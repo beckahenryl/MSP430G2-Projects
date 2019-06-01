@@ -2,7 +2,11 @@
 
 /*This project was implemented to work with the Energia IDE. It utilizes the built in temperature sensor that comes
 with the MSP430G2. To get it to work with your MSP430G2, you can rotate the J3 jumper to 90 degrees to enable the serial monitor
-if you are having trouble reading the values.
+if you are having trouble reading the values. There is a about a 15% margin of error. This is within the hardware. As a result,
+it cannot be mitigated. It is supposed to give a general idea of what the temperature is and it is not meant to be accurate.
+
+For more information on how it can work with CCS please use the link below:
+https://github.com/IndianTinker/MSP430InternalTemperature
 */
 
 volatile int temp;    //initialize
@@ -28,18 +32,18 @@ void setup(){
     Serial.begin(9600);
     temp=0;
     Serial.println("Initial TEMP: ");
-    Serial.println(temp); //testing again2
-    tempInit();//initialise adc
+    Serial.println(temp); //read the initial value of the temperature for accuracy
+    tempInit();//initialize adc
   
  }
 void loop(){
  
    
-        delay(500); //wait and set break point
+        delay(500); //wait and set delay
         temp=tempOut();           //read temp
         Serial.println("Testing T: ");
         Serial.println(temp); //testing again
-        delay(500);  //wait and set breakpoint
+        delay(500);  //wait and set delay
   
   
   }  
